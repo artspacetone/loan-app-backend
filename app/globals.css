@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary-purple: #6b46c1;
+  --deep-purple: #4c1d95;
+  --bright-yellow: #fcd34d;
+  --golden-yellow: #f59e0b;
+  --accent-purple: #8b5cf6;
+  --light-purple: #a78bfa;
+  --gradient-start: #6b46c1;
+  --gradient-end: #4c1d95;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-gradient-to-br from-purple-900 via-purple-800 to-violet-900 text-foreground;
+    background-attachment: fixed;
+  }
+}
+
+@layer components {
+  .glass-effect {
+    @apply bg-white/10 backdrop-blur-md border border-white/20 shadow-xl;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-yellow-400 to-yellow-300 bg-clip-text text-transparent;
+  }
+
+  .floating-shapes::before {
+    content: "";
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: linear-gradient(45deg, #8b5cf6, #a78bfa);
+    border-radius: 50%;
+    top: -100px;
+    right: -100px;
+    opacity: 0.1;
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .floating-shapes::after {
+    content: "";
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    background: linear-gradient(45deg, #fcd34d, #f59e0b);
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    bottom: -75px;
+    left: -75px;
+    opacity: 0.1;
+    animation: float 8s ease-in-out infinite reverse;
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-20px) rotate(180deg);
+    }
+  }
+}
+
+.card-hover {
+  @apply transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/25;
+}
+
+.btn-primary {
+  @apply bg-gradient-to-r from-yellow-400 to-yellow-500 text-purple-900 font-bold py-3 px-6 rounded-xl shadow-lg hover:from-yellow-300 hover:to-yellow-400 transition-all duration-300 transform hover:scale-105;
+}
+
+.btn-secondary {
+  @apply bg-gradient-to-r from-purple-600 to-purple-700 text-white font-semibold py-2 px-4 rounded-lg border border-purple-400 hover:from-purple-500 hover:to-purple-600 transition-all duration-300;
+}
