@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
-    serverComponentsExternalPackages: ["@supabase/supabase-js"],
+    appDir: true,
   },
   eslint: {
     ignoreDuringBuilds: true,
@@ -12,21 +12,28 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  // Ensure proper routing
-  trailingSlash: false,
-  // Force dynamic rendering for API routes
+  async rewrites() {
+    return [
+      {
+        source: "/api/:path*",
+        destination: "/api/:path*",
+      },
+    ]
+  },
   async headers() {
     return [
       {
         source: "/api/:path*",
         headers: [
-          {
-            key: "Cache-Control",
-            value: "no-cache, no-store, max-age=0, must-revalidate",
-          },
+          { key: "Access-Control-Allow-Origin", value: "*" },
+          { key: "Access-Control-Allow-Methods", value: "GET, POST, PUT, DELETE, OPTIONS" },
+          { key: "Access-Control-Allow-Headers", value: "Content-Type, Authorization" },
         ],
       },
     ]
+  },
+  env: {
+    CUSTOM_KEY: process.env.CUSTOM_KEY,
   },
 }
 

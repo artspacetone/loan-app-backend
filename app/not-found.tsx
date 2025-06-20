@@ -1,35 +1,25 @@
-"use client"
-
 import Link from "next/link"
+import { Button } from "@/components/ui/button"
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50">
-      <div className="text-center">
-        <div className="mb-8">
-          <h1 className="text-6xl font-bold text-gray-900 mb-4">404</h1>
-          <h2 className="text-2xl font-semibold text-gray-700 mb-4">Halaman Tidak Ditemukan</h2>
-          <p className="text-gray-600 mb-8">Maaf, halaman yang Anda cari tidak dapat ditemukan.</p>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-50 to-yellow-50">
+      <div className="text-center space-y-6 p-8">
+        <div className="space-y-2">
+          <h1 className="text-6xl font-bold text-purple-600">404</h1>
+          <h2 className="text-2xl font-semibold text-gray-800">Page Not Found</h2>
+          <p className="text-gray-600 max-w-md mx-auto">The page you're looking for doesn't exist or has been moved.</p>
         </div>
 
         <div className="space-y-4">
-          <Link
-            href="/"
-            className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors"
-          >
-            Kembali ke Beranda
+          <Link href="/login">
+            <Button className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3">Go to Login</Button>
           </Link>
 
           <div className="text-sm text-gray-500">
-            <p>Atau coba halaman berikut:</p>
-            <div className="mt-2 space-x-4">
-              <Link href="/login" className="text-blue-600 hover:underline">
-                Login
-              </Link>
-              <Link href="/dashboard" className="text-blue-600 hover:underline">
-                Dashboard
-              </Link>
-            </div>
+            <Link href="/api/health" className="text-purple-600 hover:underline">
+              Check API Health
+            </Link>
           </div>
         </div>
       </div>
